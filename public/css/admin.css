@@ -1,0 +1,195 @@
+@font-face {
+  font-family: 'Futura Black Custom';
+  src: url('/fonts/Futura-Black.ttf') format('truetype'), url('/fonts/Futura%20Black.ttf') format('truetype');
+  font-weight: 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+/* ============================================================
+   Chalk & Chauser — Admin Dashboard CSS (Modern UI)
+   Main Heading Font: Futura Black style stack
+   Body: Plus Jakarta Sans
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background-color: #F8FAFE;
+}
+
+/* Typography override */
+h1, h2, h3, h4, .admin-page-title, .admin-card__title, .stat-card__value {
+  font-family: "Futura Black Custom", "Futura Black", "Futura-Bold", "Futura", "Syne", "Outfit", sans-serif !important;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+
+/* Form controls for admin */
+.admin-form-group {
+  margin-bottom: 20px;
+}
+
+.admin-form-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #3B3F63;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.admin-form-control {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  color: #060624;
+  background: #FFFFFF;
+  border: 1.5px solid #E2E6F5;
+  border-radius: 12px;
+  transition: all 180ms ease;
+  outline: none;
+}
+
+.admin-form-control:focus {
+  border-color: #1212EB;
+  box-shadow: 0 0 0 4px rgba(18, 18, 235, 0.1);
+}
+
+textarea.admin-form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.admin-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .admin-form-row { grid-template-columns: 1fr; }
+}
+
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 9999px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all 200ms ease;
+  text-decoration: none;
+}
+
+.admin-btn-primary {
+  background: #1212EB;
+  color: #FFFFFF;
+  border-color: #1212EB;
+  box-shadow: 0 4px 14px rgba(18, 18, 235, 0.25);
+}
+.admin-btn-primary:hover {
+  background: #080880;
+  border-color: #080880;
+  transform: translateY(-2px);
+}
+
+.admin-btn-secondary {
+  background: #FFFFFF;
+  color: #1212EB;
+  border-color: #E2E6F5;
+}
+.admin-btn-secondary:hover {
+  border-color: #1212EB;
+  transform: translateY(-1px);
+}
+
+.admin-btn-danger {
+  background: #FEE2E2;
+  color: #991B1B;
+  border-color: #FECACA;
+}
+.admin-btn-danger:hover {
+  background: #FECACA;
+}
+
+.admin-btn-sm {
+  padding: 7px 16px;
+  font-size: 0.8rem;
+}
+
+/* Page header */
+.admin-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-page-title {
+  font-size: 1.75rem;
+  color: #060624;
+}
+
+.admin-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #70759E;
+  margin-top: 2px;
+}
+
+.admin-breadcrumb a {
+  color: #1212EB;
+  text-decoration: none;
+}
+
+/* Toast / flash */
+.flash-message {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #10B981;
+  color: white;
+  padding: 14px 22px;
+  border-radius: 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  z-index: 9999;
+  animation: slideInRight 0.3s ease, fadeOut 0.4s ease 3s forwards;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 380px;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; pointer-events: none; }
+}
+
+/* Responsive sidebar toggle */
+.admin-sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar-toggle { display: block; }
+}
