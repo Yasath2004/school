@@ -7,6 +7,7 @@ return [
     'nav' => [
         'home' => 'Home',
         'about' => 'About',
+        'schools' => 'Schools',
         'international' => 'International School',
         'preschool' => 'Preschool',
         'teachers' => 'Teachers',

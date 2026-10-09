@@ -30,10 +30,23 @@ document.addEventListener('DOMContentLoaded', function () {
       nav.classList.toggle('open');
       document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
     });
+    // Mobile dropdown toggle
+    const dropdownToggle = document.querySelector('.navbar__dropdown-toggle');
+    const dropdown = document.querySelector('.navbar__dropdown');
+    if (dropdownToggle && dropdown) {
+      dropdownToggle.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          dropdown.classList.toggle('open');
+        }
+      });
+    }
+    
     // Close on link click
     nav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         nav.classList.remove('open');
+        if (dropdown) dropdown.classList.remove('open');
         document.body.style.overflow = '';
       });
     });

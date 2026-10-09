@@ -7,6 +7,7 @@ return [
     'nav' => [
         'home' => 'මුල් පිටුව',
         'about' => 'අප ගැන',
+        'schools' => 'පාසල් අංශ',
         'international' => 'ජාත්‍යන්තර පාසල',
         'preschool' => 'පූර්ව පාසල',
         'teachers' => 'ගුරුවරු',

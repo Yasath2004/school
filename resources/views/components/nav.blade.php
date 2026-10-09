@@ -1,6 +1,9 @@
 @php
   $lang = app()->getLocale();
   $isHero = isset($heroPage) && $heroPage;
+  $currentRoute = request()->route();
+  $currentRouteName = $currentRoute && $currentRoute->getName() ? $currentRoute->getName() : 'home';
+  $currentRouteParams = $currentRoute ? $currentRoute->parameters() : [];
 @endphp
 <nav class="navbar navbar--transparent" id="navbar" role="navigation" aria-label="Main navigation">
   <div class="container">
@@ -20,8 +23,33 @@
         <button class="navbar__nav-close" style="display:none;" aria-label="Close menu">&times;</button>
         <li><a href="{{ route('home', ['lang' => $lang]) }}">{{ __('school.nav.home') }}</a></li>
         <li><a href="{{ route('about', ['lang' => $lang]) }}">{{ __('school.nav.about') }}</a></li>
-        <li><a href="{{ route('international-school', ['lang' => $lang]) }}">{{ __('school.nav.international') }}</a></li>
-        <li><a href="{{ route('preschool', ['lang' => $lang]) }}">{{ __('school.nav.preschool') }}</a></li>
+        
+        {{-- Schools Dropdown --}}
+        <li class="navbar__dropdown">
+          <button type="button" class="navbar__dropdown-toggle {{ request()->routeIs('international-school') || request()->routeIs('preschool') ? 'active' : '' }}" aria-haspopup="true" aria-expanded="false">
+            <span>{{ __('school.nav.schools') }}</span>
+            <svg class="navbar__dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="navbar__dropdown-menu">
+            <a href="{{ route('international-school', ['lang' => $lang]) }}" class="navbar__dropdown-item {{ request()->routeIs('international-school') ? 'active' : '' }}">
+              <div class="navbar__dropdown-icon">🎓</div>
+              <div>
+                <div class="navbar__dropdown-title">{{ __('school.nav.international') }}</div>
+                <div class="navbar__dropdown-desc">Grades 1 – 12 Cambridge Curriculum</div>
+              </div>
+            </a>
+            <a href="{{ route('preschool', ['lang' => $lang]) }}" class="navbar__dropdown-item {{ request()->routeIs('preschool') ? 'active' : '' }}">
+              <div class="navbar__dropdown-icon">🧸</div>
+              <div>
+                <div class="navbar__dropdown-title">{{ __('school.nav.preschool') }}</div>
+                <div class="navbar__dropdown-desc">Ages 2.5 – 5 Early Years Development</div>
+              </div>
+            </a>
+          </div>
+        </li>
+
         <li><a href="{{ route('teachers', ['lang' => $lang]) }}">{{ __('school.nav.teachers') }}</a></li>
         <li><a href="{{ route('admissions', ['lang' => $lang]) }}">{{ __('school.nav.admissions') }}</a></li>
         <li><a href="{{ route('events', ['lang' => $lang]) }}">{{ __('school.nav.events') }}</a></li>
@@ -33,10 +61,10 @@
       <div class="navbar__actions">
         {{-- Language Switcher --}}
         <div class="lang-switcher" role="navigation" aria-label="Language switcher">
-          <a href="{{ route(request()->route()->getName(), array_merge(request()->route()->parameters(), ['lang' => 'en'])) }}"
+          <a href="{{ route($currentRouteName, array_merge($currentRouteParams, ['lang' => 'en'])) }}"
              class="{{ $lang === 'en' ? 'active' : '' }}"
              lang="en" hreflang="en">EN</a>
-          <a href="{{ route(request()->route()->getName(), array_merge(request()->route()->parameters(), ['lang' => 'si'])) }}"
+          <a href="{{ route($currentRouteName, array_merge($currentRouteParams, ['lang' => 'si'])) }}"
              class="{{ $lang === 'si' ? 'active' : '' }}"
              lang="si" hreflang="si">සිංහල</a>
         </div>

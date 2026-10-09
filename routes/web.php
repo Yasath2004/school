@@ -25,8 +25,8 @@ use App\Http\Controllers\Admin\SettingsController;
 |--------------------------------------------------------------------------
 */
 
-// Redirect root to default locale
-Route::get('/', fn() => redirect('/en'));
+// Default home page without redirecting so the app responds successfully at /
+Route::get('/', [HomeController::class, 'index'])->defaults('lang', 'en');
 
 // Localized public routes
 Route::prefix('{lang}')->where(['lang' => 'en|si'])->group(function () {
